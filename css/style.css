@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+/************************************ Head ************************************/
+
+body {
+  background-color: #eaeaea;
+}
+
+.header {
+  background-color: rgb(37, 185, 154);
+	padding: 20px 0;
+	margin-bottom: 20px;
+}
+
+.header h1 {
+  margin-left: 15px;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 800;
+  font-size: 30px;
+}
+
+.header .tagline {
+  font-size: 26px;
+  color: #fff;
+}
+
+.header h2 {
+  margin-left: 15px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 22px;
+  width: 100%;
+  display: inline-block;
+}
+
+.header .position {
+  display: flex;
+  width: 94%;
+  margin: 0 auto;
+}
+
+#video {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.forms {
+  margin-left: 10px;
+  width: 50%;
+  position: relative;
+}
+
+.form-1 {
+  margin-bottom: 5px;
+}
+
+#url-input,
+#main-input {
+	border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  height: 50px;
+  font-size: 1em;
+  line-height: 22px;
+  border-radius: 8px;
+	padding: 0 35px 0 15px;
+	color: #fff;
+	box-sizing: border-box;
+  width: 100%;
+}
+
+#url-input::placeholder,
+#main-input::placeholder {
+	color: #fff;
+}
+
+.submit-url,
+.submit {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  font-size: 15px;
+	height: 35px;
+	width: 50px;
+	border-radius: 8px;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+	transition: all ease 0.8s;
+  color: #fff;
+  position: absolute;
+}
+
+.submit-url {
+  top: 7.5px;
+  right: 7.5px;
+}
+
+.submit {
+  top: 62.5px;
+  right: 7.5px;
+}
+
+.submit-url:hover,
+.submit:hover {
+  cursor: pointer;
+	transform: rotate(360deg);
+}
+
+/************************************ Main ************************************/
+
+.main {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+ul,
+ol {
+	list-style-type: none;
+}
+
+.no-tasks {
+	color: #fff;
+	text-align: center;
+}
+
+.no-tasks img {
+	transition: all ease 2s;
+	width: 25px;
+	height: 25px;
+}
+
+.no-tasks img:hover {
+	transform: rotate(2880deg);
+}
+
+.main ul {
+	width: 90%;
+}
+
+.main li {
+	background-color: #fff;
+	padding: 0px 20px 15px 20px;
+	border-radius: 5px;
+	box-shadow: 0 0.5px 0.5px rgba(200, 200, 200, 0.5);
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-bottom: 9px;
+	margin-top: 9px;
+	word-wrap: break-word;
+}
+
+.main li span {
+	display: inline-block;
+	margin-top: 15px;
+}
+
+.main li div {
+	margin-top: 15px;
+}
+
+.main li button {
+	background-color: transparent;
+	outline: none;
+	font-size: 18px;
+	border: none;
+}
+
+.main li button:hover {
+	cursor: pointer;
+}
+
+.main li button.done {
+	color: #5fcf80;
+	/*margin-right: 5.5px;
+	padding-right: 11px;
+	border-right: 1px solid #ececec;*/
+}
+
+.main li label {
+  color: #5fcf80;
+  margin-right: 5.5px;
+	margin-right: 5.5px;
+}
+
+.main li input {
+	margin-right: 5.5px;
+	margin-right: 5.5px;
+	padding-right: 11px;
+}
+
+.main li button.remove {
+	color: #c25975;
+	margin-left: 5.5px;
+	margin-left: 5.5px;
+	padding-left: 11px;
+	border-left: 1px solid #ececec;
+}
+
+#email {
+  border: none;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.25);
+  outline: none;
+  padding: 8px;
+  height: 100px;
+  color: #fff;
+  font-size: 20px;
+  margin: 0 auto;
+  margin-top: 205px;
+  width: 100%;
+}
+
+#email:hover {
+  cursor: pointer;
+}
+
+/******************************** Base Styles *********************************/
+
+body p {
+
+  margin-left: 20px;
+}
+
+a:link {
+  text-decoration: none;
+  color: rgb(20, 185, 154);
+  font-size: 20px;
+}
+
+a:visited {
+  color: rgb(37, 185, 154);
+}
+
+@media (max-width: 1000px) {
+  .position {
+    flex-wrap: wrap;
+  }
+
+  #video {
+    width: 100%;
+  }
+
+  #email {
+    margin-top: 5px;
+  }
+
+  .forms {
+    width: 100%;
+    margin-left: 0;
+  }
+}

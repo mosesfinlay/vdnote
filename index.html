@@ -2,36 +2,53 @@
 <html>
   <head>
     <title>VdNote</title>
+    <meta name="description" content="VdNote a note taking app for videos.">
     <link rel="shortcut icon" href="img/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
     <meta name="viewport" content="width=device-width">
   </head>
-  <body>
-    <div class="header">
-      <h1>VdNote <span class="tagline">a note taking app for videos<span></h1>
-      <div class="position">
-        <iframe height="415" id="video" src="" frameborder="0"></iframe>
-        <div class="forms">
-          <form class="form-1">
-            <input type="url" id="url-input" placeholder="Enter YouTube URL..." />
-            <input type="submit" class="submit-url" value="GO" />
-          </form>
-      		<form class="form-2">
-      			<input type="text" id="main-input" placeholder="Type Notes Here..." />
-      			<input type="submit" class="submit" value="GO" />
-      		</form>
-
-          <button id="email">Send notes via email</button>
+  <body>    
+    <div class="alertNotice"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 pt-3">
+          <div class="bg-white p-3 border rounded top">
+            <div class="embed-responsive embed-responsive-16by9 bg-light iframe mb-3">
+              <h1 class="display-4 text-muted text-center font-weight-bold my-5 py-5">Video Here</h1>
+              <iframe class="embed-responsive-item video" id="video" src="https://www.youtube.com/embed/GrJELW3hqds?enablejsapi=1"></iframe>
+            </div>
+            <form class="URL">
+              <div class="form-group mb-0">
+                <input type="url" class="form-control outline-info my-2" placeholder="Enter Youtube URL">
+              </div>
+            </form>
+            <form class="note">
+              <div class="form-group mb-0">
+                <input type="text" class="form-control outline-info form-control-lg my-2" placeholder="Enter Note">
+                <br />
+                <a href="" class="btn btn-lg btn-outline-info d-block email">Email Your Notes</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6 pt-3">
+          <div class="bg-white p-3 border rounded note-list">
+            <h1 class="text-dark text-center font-weight-bold">VdNote <p class="small text-info font-weight-normal">a note sharing app for videos</p></h1>
+            <hr>
+            <ul class="list-group"></ul>
+          </div>
         </div>
       </div>
     </div>
-		<div class="main">
-			<ul id="tasks"></ul>
-		</div>
 
-    <p>Made with Aloha by <a href="http://mosesfinlay.com">moses</a></p>
-		<script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" id="www-widgetapi-script" src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflkFToWg/www-widgetapi.js" async=""></script>
+    <script id="iframe-demo" src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/clipboard/clipboard.min.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

@@ -1,6 +1,13 @@
 * {
- font-family: "Quattrocento Sans", sans-serif;
- -webkit-font-smoothing: subpixel-antialiased;
+ font-family: "Varela Round", sans-serif;
+ -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#30d99a, #00ced1);
+  background-color: #fff;
+  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
+  background-repeat: repeat;
 }
 
 .iframe::before {
@@ -9,6 +16,10 @@
 
 .text-info {
  color: #25b99a!important;
+}
+
+a.text-info:hover {
+  color: #25b99a!important;
 }
 
 .btn-outline-info {
@@ -47,10 +58,29 @@
 }
 
 .note-list {
-  height: 477px;
+  height: 465px;
   overflow-y: auto;
 }
 
 .close:hover {
   cursor: pointer;
+}
+
+.shadow {
+  box-shadow: 10px 10px 15px 0 rgba(46,61,73,0.1);
+}
+
+.rounded {
+  border-radius: 10px!important;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .note-list {
+    height: auto;
+    overflow-y: auto;
+  }
 }

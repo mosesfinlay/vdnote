@@ -5,15 +5,28 @@ const URLForm = document.querySelector(".URL");
 const noteInput = document.querySelector("input[type='text']");
 const noteForm = document.querySelector(".note");
 const email = document.querySelector(".email");
-
 let notes = [];
 
 var player;
 function onYouTubeIframeAPIReady() {
-	player = new YT.Player('video');
+	player = new YT.Player("video", {
+		startSeconds: 10
+	});
 }
 
-const Note = function(value, index, edit, remove, copy, timestamp, html, timeStampHref) {
+function alertNotice(notice) {
+	const alert = `
+		<div class="alert bg-white alert-dismissible mt-3 animated rubberBand" role="alert">
+			${notice}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	`;
+	document.getElementsByClassName("alertNotice")[0].innerHTML = alert;
+}
+
+const Note = function(value, index, edit, remove, copy, tweet, timestamp, html, timeStampHref) {
 	const clipboard = new Clipboard(".copy", {
 		text: function(trigger) {
 	    const note = document.querySelector(`[class="${notes.length}"]`);
@@ -36,10 +49,16 @@ const Note = function(value, index, edit, remove, copy, timestamp, html, timeSta
 	this.secondDiv = document.createElement("DIV");
 	this.form = document.createElement("FORM");
 	this.input = document.createElement("INPUT");
+
 	this.buttonCopy = document.createElement("BUTTON");
 	this.copyIMG = document.createElement("IMG");
+
 	this.buttonEdit = document.createElement("BUTTON");
 	this.editIMG = document.createElement("IMG");
+
+	this.buttonTweet = document.createElement("A");
+	this.tweetIMG = document.createElement("IMG");
+
 	this.buttonRemove = document.createElement("BUTTON");
 	this.removeIMG = document.createElement("IMG");
 
@@ -66,11 +85,18 @@ const Note = function(value, index, edit, remove, copy, timestamp, html, timeSta
 	this.copyIMG.src = "img/copy.svg";
 	this.copyIMG.setAttribute("draggable", false);
 
-	this.buttonEdit.className = "btn feature-button p-1";
+	this.buttonEdit.className = "btn feature-button p-1 edit";
 	this.editIMG.src = "img/edit.svg";
 	this.editIMG.setAttribute("draggable", false);
 
-	this.buttonRemove.className = "btn feature-button p-1";
+	const videoId = video.src.split("https://www.youtube.com/embed/").join("").split("?enablejsapi=1").join("");
+	this.buttonTweet.className = "btn feature-button p-1 tweet";
+	this.buttonTweet.href = `http://twitter.com/home?status=“${this.value}” https://www.youtube.com/watch?v=${videoId}%26t=${this.timeStamp.textContent} - by @vdnote`;
+	this.buttonTweet.target = "_blank";
+	this.tweetIMG.src = "img/tweet.svg";
+	this.tweetIMG.setAttribute("draggable", false);
+
+	this.buttonRemove.className = "btn feature-button p-1 remove";
 	this.removeIMG.src = "img/remove.svg";
 	this.removeIMG.setAttribute("draggable", false);
 
@@ -81,6 +107,11 @@ const Note = function(value, index, edit, remove, copy, timestamp, html, timeSta
 	this.firstDiv.appendChild(this.form);
 	this.li.appendChild(this.secondDiv);
 	this.form.appendChild(this.input);
+
+	if (tweet) {
+		this.secondDiv.appendChild(this.buttonTweet);
+		this.buttonTweet.appendChild(this.tweetIMG);
+	}
 	if (edit) {
 		this.secondDiv.appendChild(this.buttonEdit);
 		this.buttonEdit.appendChild(this.editIMG);
@@ -105,7 +136,9 @@ const Note = function(value, index, edit, remove, copy, timestamp, html, timeSta
 		this.secondDiv.appendChild(this.buttonCopy);
 		this.buttonCopy.appendChild(this.copyIMG);
 		this.buttonCopy.setAttribute("data-clipboard-target", `[class="${notes.length}"]`);
-		//clipboard.text();
+		this.buttonCopy.addEventListener("click", function() {
+			alertNotice("Copied!");
+		});
 	}
 	if (remove) {
 		this.secondDiv.appendChild(this.buttonRemove);
@@ -123,18 +156,6 @@ noteInput.addEventListener("focus", function() {
 	player.pauseVideo();
 });
 
-function alertNotice(notice) {
-	const alert = `
-		<div class="alert alert-success alert-dismissible fade show mx-5 mt-3" role="alert">
-			${notice}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	`;
-	document.getElementsByClassName("alertNotice")[0].innerHTML = alert;
-}
-
 URLForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	if (urlInput.value) {
@@ -147,7 +168,7 @@ URLForm.addEventListener("submit", (e) => {
 		}
 		video.src = "https://www.youtube.com/embed/" + url_end[1] + "?enablejsapi=1";
 	} else {
-		alertNotice("Please paste a youtube video URL :)");
+		alertNotice("Please paste a Youtube video URL :)");
 	}
 });
 
@@ -161,7 +182,7 @@ function addList() {
 	if (noteInput.value) {
 		const timeStamp = Math.round(player.getCurrentTime()).toString() + "s";
 		const link = "https://www.youtube.com/watch?v=" + getId() + "&t=" + timeStamp;
-		const note = new Note(noteInput.value, notes.length, true, true, true, timeStamp, false, link);
+		const note = new Note(noteInput.value, notes.length, true, true, true, true, timeStamp, false, link);
 		notes.push(note);
 	} else {
 		alertNotice("Please type a note :)");
@@ -177,11 +198,12 @@ email.addEventListener("click", (e) => {
 	let email_body = ``;
 
 	for (let i = 0; i < notes.length; i++) {
-		email_body += `${i + 1}. ${notes[i].value} \r\n%0D%0A`;
+		email_body += `${i + 1}. ${notes[i].value} - ${notes[i].timeStamp.textContent} \r\n%0D%0A`;
+		console.log(notes[i].timeStamp);
 	}
 
 	for (let i = 0; i < notes.length; i++) {
-		email_body += `\r\n%0D%0AThese notes were based on this video ${notes[i].timeStampLink.href}`;
+		email_body += `\r\n%0D%0AThese notes were based on this Youtube video ${notes[i].timeStampLink.href}.`;
 	}
 
 	if (email_body === ``) {

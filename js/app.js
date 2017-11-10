@@ -91,7 +91,7 @@ const Note = function(value, index, edit, remove, copy, tweet, timestamp, html, 
 
 	const videoId = video.src.split("https://www.youtube.com/embed/").join("").split("?enablejsapi=1").join("");
 	this.buttonTweet.className = "btn feature-button p-1 tweet";
-	this.buttonTweet.href = `http://twitter.com/home?status=“${this.value}” https://www.youtube.com/watch?v=${videoId}%26t=${this.timeStamp.textContent} - by @vdnote`;
+	this.buttonTweet.href = `http://twitter.com/home?status=“${this.value}” https://www.youtube.com/watch?v=${videoId}%26t=${this.timeStamp.textContent} - via @vdnote`;
 	this.buttonTweet.target = "_blank";
 	this.tweetIMG.src = "img/tweet.svg";
 	this.tweetIMG.setAttribute("draggable", false);
